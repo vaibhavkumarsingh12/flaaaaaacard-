@@ -82,7 +82,7 @@ button {
     margin-bottom: 20px;
 }
 
-#sidebar, #wrongSidebar {
+.sidebar { /* Style for both sidebars */
     position: fixed;
     top: 20px;
     width: 300px;
@@ -92,6 +92,7 @@ button {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     max-height: 90vh;
     overflow-y: auto;
+    transition: transform 0.3s ease-in-out, right 0.3s ease-in-out; /* For smooth animation */
 }
 
 #sidebar {
@@ -117,7 +118,7 @@ button {
     background-color: #f8f8f8;
 }
 
-#saveBtn, #loadBtn, #downloadBtn , #clearWrongBtn{ /* Added style for the new button */
+#saveBtn, #loadBtn, #downloadBtn , #clearWrongBtn, #loadSetsBtn{ /* Added style for the new button and loadSetsBtn */
     width: 100%;
     margin: 5px 0;
     background-color: #666;
@@ -147,4 +148,95 @@ button {
 
 #savedSetsList a:hover {
     background-color: #ddd;
+}
+
+.sidebar-toggle-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333; /* Adjust color as needed */
+    padding: 5px;
+    z-index: 10; /* Ensure it's above sidebar content */
+}
+
+
+/* Mobile Specific Styles - Media Query */
+@media (max-width: 768px) { /* Adjust breakpoint as needed */
+    .sidebar {
+        width: 250px; /* Slightly smaller on mobile */
+        transform: translateX(100%); /* Initially hidden off-screen */
+        right: 0; /* Align to the right edge */
+    }
+
+    .sidebar.open {
+        transform: translateX(0); /* Slide in when open class is added */
+    }
+
+    #sidebar {
+        right: auto; /* Override specific right position for #sidebar */
+        left: auto; /* Ensure it can slide from right */
+    }
+
+    #wrongSidebar {
+        right: 0; /* Ensure it slides from right */
+    }
+
+    #sidebar.open { /* Ensure correct sidebar opens */
+        transform: translateX(0);
+    }
+
+    #wrongSidebar.open { /* Ensure correct sidebar opens */
+        transform: translateX(0);
+    }
+
+    #sidebar-toggle-btn {
+        display: block; /* Show toggle button on mobile */
+    }
+
+    body {
+        flex-direction: column; /* Stack elements vertically on mobile */
+        align-items: stretch; /* Full width on mobile */
+    }
+
+    .container {
+        width: 100%; /* Full width container */
+        padding: 20px;
+    }
+
+    .card {
+        width: 95%; /* Card takes most of the screen width */
+        max-width: 95%; /* Ensure it doesn't get too wide */
+        margin: 0 auto; /* Center the card */
+    }
+
+    #sidebar, #wrongSidebar {
+        top: 0; /* Full height sidebar from top */
+        height: 100vh; /* Full viewport height */
+        max-height: none; /* Override max-height */
+        z-index: 1000; /* Ensure sidebar is on top */
+        padding-top: 60px; /* Make space for toggle button and header if needed */
+    }
+
+    .sidebar-toggle-btn {
+        /* Already styled above, but ensure it's visible and positioned */
+    }
+
+    #sidebar {
+        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2); /* Shadow on left edge when open */
+    }
+
+    #wrongSidebar {
+        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2); /* Shadow on left edge when open */
+    }
+}
+
+/* Initially hide toggle buttons on larger screens if you want sidebar always visible by default on desktop */
+@media (min-width: 769px) {
+    .sidebar-toggle-btn {
+        display: none;
+    }
 }
