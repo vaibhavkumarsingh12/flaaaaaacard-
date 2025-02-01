@@ -29,7 +29,8 @@ Answer: Your answer"></textarea>
     </div>
 
     <!-- Sidebar for flashcards -->
-    <div id="sidebar">
+    <div id="sidebar" class="sidebar"> <!---- Added class "sidebar" here -->
+        <button id="toggleSidebarBtn" class="sidebar-toggle-btn">☰</button>  <!-- Toggle button -->
         <h3>Saved Flashcards</h3>
         <div id="questionList"></div>
         <div class="save-buttons">
@@ -40,13 +41,13 @@ Answer: Your answer"></textarea>
     </div>
 
     <!-- Sidebar for wrong answers -->
-    <div id="wrongSidebar">
+    <div id="wrongSidebar" class="sidebar"> <!---- Added class "sidebar" here -->
         <h3>Wrong Questions</h3>
         <div id="wrongList"></div>
         <button id="clearWrongBtn">Clear All Wrong Questions</button>
         <h3>Load Flashcard Set</h3>  <!-- Added heading -->
         <div id="savedSetsList"></div>  <!-- Added div to display saved sets -->
-        <button id="loadBtn">Show Saved Sets</button> <!-- Changed button text -->
+        <button id="loadSetsBtn">Show Saved Sets</button> <!-- Changed button text and ID -->
     </div>
 
     <script src="script.js"></script>
