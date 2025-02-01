@@ -23,6 +23,10 @@ const questionList = document.getElementById('questionList');
 const wrongList = document.getElementById('wrongList');
 const clearWrongBtn = document.getElementById('clearWrongBtn');
 const savedSetsListElement = document.getElementById('savedSetsList'); // Get the new list element
+const savedSetsButton = document.getElementById('loadSetsBtn'); // Correct ID for load sets button
+const sidebar = document.getElementById('sidebar'); // Get the flashcard sidebar
+const wrongSidebar = document.getElementById('wrongSidebar'); // Get the wrong questions sidebar
+const toggleSidebarBtn = document.getElementById('toggleSidebarBtn'); // Get the toggle button
 
 
 // Event Listeners
@@ -31,10 +35,12 @@ correctBtn.addEventListener('click', handleCorrect);
 wrongBtn.addEventListener('click', handleWrong);
 hintBtn.addEventListener('click', showHint);
 saveBtn.addEventListener('click', saveFlashcards);
-loadBtn.addEventListener('click', showSavedSetList); // Changed to showSavedSetList
+loadBtn.addEventListener('click', showSidebar); // Keep loadBtn to show flashcard sidebar
 downloadBtn.addEventListener('click', downloadFlashcards);
 clearWrongBtn.addEventListener('click', clearWrongFlashcards);
+savedSetsButton.addEventListener('click', showSavedSetList); // Use savedSetsButton to show saved sets list
 document.addEventListener('DOMContentLoaded', loadLastSession);
+toggleSidebarBtn.addEventListener('click', toggleSidebar); // Event listener for toggle button
 
 
 function addFlashcards() {
@@ -250,4 +256,12 @@ function clearWrongFlashcards() {
 
 function sanitizeFilename(name) {
     return name.replace(/[^a-zA-Z0-9_-]/g, '_');
+}
+
+function showSidebar() { // Function to show the flashcard sidebar
+    sidebar.classList.add('open'); // Add 'open' class to show sidebar
+}
+
+function toggleSidebar() { // Function to toggle sidebar visibility
+    sidebar.classList.toggle('open'); // Toggle 'open' class
 }
